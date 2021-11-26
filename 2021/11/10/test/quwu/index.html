@@ -102,12 +102,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeun65urj20zk0m81ii.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
         </ul>
       </div>
     </header>
@@ -151,10 +151,34 @@
   <div class="body md" itemprop="articleBody">
     
 
-    <p>先立一个Flag，图像去雾算法弄懂了写一篇文章。<br>暗通道、Retinex</p>
-<p>好的，我来完结这个flag了。理解还很肤浅，只能说管中窥豹</p>
-<p>首先需要理解几个先验知识：</p>
-<p>一、Retinex理论</p>
+    <h1 id="先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex"><a class="markdownIt-Anchor" href="#先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex">#</a> 先立一个 Flag，图像去雾算法弄懂了写一篇文章。<br>
+暗通道、Retinex</h1>
+<div class="media-container"><div class="player" data-type="audio" data-src='[{"title":"列表 1","list":["https://music.163.com/#/playlist?id=2943811283","https://music.163.com/#/playlist?id=2297706586"]},{"title":"列表 2","list":["https://music.163.com/#/playlist?id=2031842656"]}]'></div></div>
+<p><s>好的，我来完结这个 flag 了。对于图像去雾的理解还很肤浅，只能说管中窥豹</s></p>
+<p><span class="red">首先需要理解几个先验知识：</span></p>
+<h2 id="一-retinex理论"><a class="markdownIt-Anchor" href="#一-retinex理论">#</a> 一、Retinex 理论</h2>
+<p>retinex 认为大气成像是由入射光函数和反射光函数，这两个乘积分量构成。即相机获得的图像 I (x,y), 由照明函数 A (x,y) 与反射函数 R (x,y) 的乘积。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> </mtext><mi>I</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>A</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>R</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="2em"/><mtext>①</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
+\ I(x,y)=A(x,y)*R(x,y)\qquad ①
+\end {array}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mspace"> </span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mord">①</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<p>其中，反射分量反映了图像的实际内容，如细节、纹理、边缘等，在空间上快速变化，频谱在空间的高频区域。而照明分量在空间上缓慢变化，频谱在空间的低频区域。可以通过滤波将两者分开。<br><br>
+Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中波和短波光线的</span><span class="red">反射能力</span><span class="red">决定的</span>，而不是由反射光强度的绝对值决定的。即物体的<span class="blue">色彩不受光照的影响</span>，具有一致性。</p>
+<h2 id="二-什么是大气物理散射模型"><a class="markdownIt-Anchor" href="#二-什么是大气物理散射模型">#</a> 二、什么是大气物理散射模型？</h2>
+<p>大气物理散射模型在机器视觉领域中：大气散射模型应用于<span class="blue">描述雾霾图像的退化过程</span>。认为：采集的图像质量降低，由物体反射光在传播过程中，被传播路径内存在的<span class="red">微粒吸收散射光</span>和光照在传播介质中<span class="red">散射的背景光</span>造成。<br><br>
+认为：采集的图像质量降低，由场景内物体反射光在传播过程中，被传播路径内存在的微粒吸收散射光和光照在传播介质中散射的背景光造成。<br><br>
+简单来说，大气物体散射模型认为，所有光在传播过程中都会散射，接收到的图像都是原图损失过的。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> </mtext><mi>I</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>J</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>t</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>+</mo><mi>A</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="2em"/><mtext>②</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
+\ I(x,y)=J(x,y)*t(x,y)+A(1-t(x,y))\qquad ②
+\end{array}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mspace"> </span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mord">②</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<p>上面公式里的 I (x,y) 代表相机接收到的图像，J (x,y) 代表物体实际的图像，t (x,y) 代表场景透射率，A 代表大气光。公式可以理解为：实际图像 J 经过散射后，衰变为 Jt。接收到的图像还由另一部分组成，没有散射的大气光：A*(1-t)</p>
+<h2 id="三-暗通道理论"><a class="markdownIt-Anchor" href="#三-暗通道理论">#</a> 三、暗通道理论</h2>
+<p>在这里，暗通道的作用就是求场景透射率 t<br><br>
+可以了解一下他的推导过程。暗通道是对于一幅图像，在 r、g、b 三个维度取最小值，并对其邻域取最小值。在取这两次最小值之后，它的值基本可以视作 0，通过很多图像的实验证明，在取这两次最小值之后，这个值几乎为 0，或者很小，图像几乎全黑。<br></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> </mtext><msup><mi>J</mi><mrow><mi>d</mi><mi>a</mi><mi>r</mi><mi>k</mi></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo><mi>m</mi><mi>i</mi><mi>n</mi></mo><mrow><mi>c</mi><mo>∈</mo><mo stretchy="false">(</mo><mi>r</mi><mo separator="true">,</mo><mi>g</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></munder><mo fence="false">(</mo><munder><mo><mi>m</mi><mi>i</mi><mi>n</mi></mo><mrow><mi>y</mi><mo>∈</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder><mo stretchy="false">(</mo><msup><mi>J</mi><mi>c</mi></msup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo fence="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
+\ J^{dark}(x)= \mathop{min}\limits_{c∈(r,g,b)} \bigg(\mathop{min}\limits_{y∈Ω(x)}(J^{c}(y)) \bigg)
+\end{array}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.416em;vertical-align:-0.958em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.458em;"><span style="top:-3.458em;"><span class="pstrut" style="height:3.45em;"></span><span class="mord"><span class="mspace"> </span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.65952em;"><span style="top:-2.3089999999999997em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">∈</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">b</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathnormal">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="delimsizing size3">(</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.65952em;"><span style="top:-2.3089999999999997em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mrel mtight">∈</span><span class="mord mtight">Ω</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">x</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathnormal">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord"><span class="delimsizing size3">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.958em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<p>=====<br>
+ 还没写完，下次再说，咕咕咕咕咕咕咕咕咕～</p>
 
       <div class="tags">
           <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"><i class="ic i-tag"></i> 图像处理</a>
@@ -169,7 +193,7 @@
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2021-11-26 16:20:46" itemprop="dateModified" datetime="2021-11-26T16:20:46+08:00">2021-11-26</time>
+    <time title="Modified: 2021-11-26 18:23:11" itemprop="dateModified" datetime="2021-11-26T18:23:11+08:00">2021-11-26</time>
   </span>
 </div>
 
@@ -234,10 +258,10 @@
     <div class="item right">
       
 
-  <a href="/2021/11/13/image_process/defog/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipew8gmvyj20zk0m87wh.jpg" title="图像去雾">
+  <a href="/2021/11/26/self_use/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevuctzzj20zk0m84qp.jpg" title="自用：资料连接">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>图像去雾</h3>
+  <h3>自用：资料连接</h3>
   </a>
 
     </div>
@@ -256,6 +280,9 @@
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%88%E7%AB%8B%E4%B8%80%E4%B8%AAflag%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E7%AE%97%E6%B3%95%E5%BC%84%E6%87%82%E4%BA%86%E5%86%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-%E6%9A%97%E9%80%9A%E9%81%93-retinex"><span class="toc-number">1.</span> <span class="toc-text"> 先立一个 Flag，图像去雾算法弄懂了写一篇文章。
+
+暗通道、Retinex</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-retinex%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 一、Retinex 理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%B0%94%E7%89%A9%E7%90%86%E6%95%A3%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 二、什么是大气物理散射模型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%9A%97%E9%80%9A%E9%81%93%E7%90%86%E8%AE%BA"><span class="toc-number">1.3.</span> <span class="toc-text"> 三、暗通道理论</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -270,13 +297,13 @@
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">5</span>
+        <span class="count">6</span>
         <span class="name">posts</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">1</span>
+        <span class="count">2</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -335,7 +362,7 @@
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2021/11/13/image_process/defog/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+        <a href="/2021/11/26/self_use/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -359,25 +386,7 @@
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/13/image_process/defog/" title="图像去雾">图像去雾</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/03/computer-science/java/course-1/no/" title="Hexo">Hexo</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/03/test/test/" title="test">test</a></span>
+    <span><a href="/2021/11/10/test/quwu/" title="图像去雾算法">图像去雾算法</a></span>
   </li>
 
       
@@ -395,7 +404,34 @@
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/10/test/quwu/" title="图像去雾算法">图像去雾算法</a></span>
+    <span><a href="/2021/11/03/test/test/" title="test">test</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/26/friends/" title="友链">友链</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/26/self_use/" title="自用：资料连接">自用：资料连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/03/computer-science/java/course-1/no/" title="Hexo">Hexo</a></span>
   </li>
 
   </ul>
@@ -436,7 +472,8 @@
       empty: "We didn't find any results for the search: ${query}",
       stats: "${hits} results found in ${time} ms"
     },
-    valine: true,fancybox: true,
+    valine: true,copy_tex: true,
+    katex: true,audio: "https://music.163.com/#/song?id=467390215 https://y.qq.com/n/yqq/playsquare/3535982902.html",fancybox: true,
     copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
     ignores : [
       function(uri) {
