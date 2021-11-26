@@ -27,7 +27,7 @@
   <meta name="keywords" content="图像处理" />
 
 
-<link rel="canonical" href="http://example.com/2021/11/10/test/quwu/">
+<link rel="canonical" href="http://example.com/2021/11/26/image_process/quwu/">
 
 
 
@@ -64,12 +64,12 @@
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2021-11-10 00:00:00">
+  <span class="item" title="Created: 2021-11-26 00:00:00">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2021-11-10T00:00:00+08:00">2021-11-10</time>
+    <time itemprop="dateCreated datePublished" datetime="2021-11-26T00:00:00+08:00">2021-11-26</time>
   </span>
 </div>
 
@@ -102,12 +102,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -136,7 +136,7 @@
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/10/test/quwu/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/26/image_process/quwu/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -151,7 +151,9 @@
   <div class="body md" itemprop="articleBody">
     
 
-    <h2 id="先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex"><a class="markdownIt-Anchor" href="#先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex">#</a> 先立一个 Flag，图像去雾算法弄懂了写一篇文章。<br>
+    <h2 id="categories计算机科学图像处理图像去雾先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex"><a class="markdownIt-Anchor" href="#categories计算机科学图像处理图像去雾先立一个flag图像去雾算法弄懂了写一篇文章-暗通道-retinex">#</a> categories:<br>
+[计算机科学，图像处理，图像去雾]<br>
+ 先立一个 Flag，图像去雾算法弄懂了写一篇文章。<br>
 暗通道、Retinex</h2>
 <div class="media-container"><div class="player" data-type="audio" data-src='[{"title":"列表 1","list":["https://music.163.com/#/playlist?id=2943811283","https://music.163.com/#/playlist?id=2297706586"]},{"title":"列表 2","list":["https://music.163.com/#/playlist?id=2031842656"]}]'></div></div>
 <p><s>好的，我来完结这个 flag 了。对于图像去雾的理解还很肤浅，只能说管中窥豹</s></p>
@@ -177,8 +179,6 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> </mtext><msup><mi>J</mi><mrow><mi>d</mi><mi>a</mi><mi>r</mi><mi>k</mi></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo><mi>m</mi><mi>i</mi><mi>n</mi></mo><mrow><mi>c</mi><mo>∈</mo><mo stretchy="false">(</mo><mi>r</mi><mo separator="true">,</mo><mi>g</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></munder><mo fence="false">(</mo><munder><mo><mi>m</mi><mi>i</mi><mi>n</mi></mo><mrow><mi>y</mi><mo>∈</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder><mo stretchy="false">(</mo><msup><mi>J</mi><mi>c</mi></msup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo fence="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
 \ J^{dark}(x)= \mathop{min}\limits_{c∈(r,g,b)} \bigg(\mathop{min}\limits_{y∈Ω(x)}(J^{c}(y)) \bigg)
 \end{array}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.416em;vertical-align:-0.958em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.458em;"><span style="top:-3.458em;"><span class="pstrut" style="height:3.45em;"></span><span class="mord"><span class="mspace"> </span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.65952em;"><span style="top:-2.3089999999999997em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mrel mtight">∈</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">b</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathnormal">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="delimsizing size3">(</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.65952em;"><span style="top:-2.3089999999999997em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mrel mtight">∈</span><span class="mord mtight">Ω</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">x</span><span class="mclose mtight">)</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathnormal">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord"><span class="delimsizing size3">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.958em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
-<hr>
-<p>还没写完，下次再说，咕咕咕咕咕咕咕咕咕～</p>
 
       <div class="tags">
           <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"><i class="ic i-tag"></i> 图像处理</a>
@@ -193,7 +193,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2021-11-26 18:28:25" itemprop="dateModified" datetime="2021-11-26T18:28:25+08:00">2021-11-26</time>
+    <time title="Modified: 2021-11-26 18:50:14" itemprop="dateModified" datetime="2021-11-26T18:50:14+08:00">2021-11-26</time>
   </span>
 </div>
 
@@ -229,7 +229,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2021/11/10/test/quwu/" title="图像去雾算法">http://example.com/2021/11/10/test/quwu/</a>
+    <a href="http://example.com/2021/11/26/image_process/quwu/" title="图像去雾算法">http://example.com/2021/11/26/image_process/quwu/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -258,7 +258,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
     <div class="item right">
       
 
-  <a href="/2021/11/26/self_use/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipesrnqv3j20zk0m8ava.jpg" title="自用：资料连接">
+  <a href="/2021/11/26/self_use/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitspjpbj20zk0m81ky.jpg" title="自用：资料连接">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>自用：资料连接</h3>
@@ -280,7 +280,11 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%AB%8B%E4%B8%80%E4%B8%AAflag%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E7%AE%97%E6%B3%95%E5%BC%84%E6%87%82%E4%BA%86%E5%86%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-%E6%9A%97%E9%80%9A%E9%81%93-retinex"><span class="toc-number">1.</span> <span class="toc-text"> 先立一个 Flag，图像去雾算法弄懂了写一篇文章。
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#categories%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E5%85%88%E7%AB%8B%E4%B8%80%E4%B8%AAflag%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE%E7%AE%97%E6%B3%95%E5%BC%84%E6%87%82%E4%BA%86%E5%86%99%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-%E6%9A%97%E9%80%9A%E9%81%93-retinex"><span class="toc-number">1.</span> <span class="toc-text"> categories:
+
+[计算机科学，图像处理，图像去雾]
+
+ 先立一个 Flag，图像去雾算法弄懂了写一篇文章。
 
 暗通道、Retinex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-retinex%E7%90%86%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text"> 一、Retinex 理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%B0%94%E7%89%A9%E7%90%86%E6%95%A3%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text"> 二、什么是大气物理散射模型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E6%9A%97%E9%80%9A%E9%81%93%E7%90%86%E8%AE%BA"><span class="toc-number">4.</span> <span class="toc-text"> 三、暗通道理论</span></a></li></ol>
       </div>
@@ -386,7 +390,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/10/test/quwu/" title="图像去雾算法">图像去雾算法</a></span>
+    <span><a href="/2021/11/26/friends/" title="友链">友链</a></span>
   </li>
 
       
@@ -395,16 +399,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/26/self_use/" title="自用：资料连接">自用：资料连接</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/03/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/2021/11/03/computer-science/java/no/" title="Hexo">Hexo</a></span>
   </li>
 
       
@@ -422,7 +417,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/26/friends/" title="友链">友链</a></span>
+    <span><a href="/2021/11/26/image_process/quwu/" title="图像去雾算法">图像去雾算法</a></span>
   </li>
 
       
@@ -431,7 +426,16 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/03/computer-science/java/course-1/no/" title="Hexo">Hexo</a></span>
+    <span><a href="/2021/11/03/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/26/self_use/" title="自用：资料连接">自用：资料连接</a></span>
   </li>
 
   </ul>
@@ -462,7 +466,7 @@ Retinex 认为：物体的颜色是由物体对<span class="blue">长波、中�
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2021/11/10/test/quwu/',
+    path: '2021/11/26/image_process/quwu/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
